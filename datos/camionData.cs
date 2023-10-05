@@ -1,4 +1,5 @@
-﻿using System;
+﻿using entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,7 +49,7 @@ namespace datos
             }
         }
 
-        public static void insertAutor(camion op)
+        public static void insertCamion(camion op)
         {
             DataRemesaDataContext db = null;
 
@@ -56,7 +57,7 @@ namespace datos
             {
                 using (db = new DataRemesaDataContext())
                 {
-                    db.AgregarGanado(op.Nombre, op.Apellido);
+                    db.AgregarCamion(op.TamañoCarga,op.Chofer,op.EstadoCamion);
                     db.SubmitChanges();
                 }
             }

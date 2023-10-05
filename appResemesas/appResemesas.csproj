@@ -52,6 +52,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="formulario\fCamion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formulario\fCamion.Designer.cs">
+      <DependentUpon>fCamion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="vistas\vCamiones.cs">
@@ -62,6 +68,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formulario\fCamion.resx">
+      <DependentUpon>fCamion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,6 +96,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\entidades\entidades.csproj">
+      <Project>{6A31D92A-08EC-4201-AE42-96CBB04B467C}</Project>
+      <Name>entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\logica\logica.csproj">
+      <Project>{93E271AC-574C-432F-ADA6-5CAFB997836C}</Project>
+      <Name>logica</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

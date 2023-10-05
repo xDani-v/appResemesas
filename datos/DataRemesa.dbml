@@ -1,8 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ganado" Class="DataRemesaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=DANIEL;Initial Catalog=ganado;Integrated Security=True" SettingsObjectName="datos.Properties.Settings" SettingsPropertyName="ganadoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Camiones" Member="Camiones">
+    <Type Name="Camiones">
+      <Column Name="IdCamion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TamañoCarga" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="Chofer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="EstadoCamion" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="Camiones_Remesas" Member="Remesas" ThisKey="IdCamion" OtherKey="IdCamion" Type="Remesas" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DetalleRemesa" Member="DetalleRemesa">
+    <Type Name="DetalleRemesa">
+      <Column Name="IdDetalleRemesa" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdRemesa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdGanado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Ganado_DetalleRemesa" Member="Ganado" ThisKey="IdGanado" OtherKey="IdGanado" Type="Ganado" IsForeignKey="true" />
+      <Association Name="Remesas_DetalleRemesa" Member="Remesas" ThisKey="IdRemesa" OtherKey="IdRemesa" Type="Remesas" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Ganado" Member="Ganado">
     <Type Name="Ganado">
-      <Column Name="IdGanado" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdGanado" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Raza" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Tipo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
@@ -14,18 +32,9 @@
       <Association Name="Ganado_DetalleRemesa" Member="DetalleRemesa" ThisKey="IdGanado" OtherKey="IdGanado" Type="DetalleRemesa" />
     </Type>
   </Table>
-  <Table Name="dbo.DetalleRemesa" Member="DetalleRemesa">
-    <Type Name="DetalleRemesa">
-      <Column Name="IdDetalleRemesa" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="IdRemesa" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IdGanado" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Ganado_DetalleRemesa" Member="Ganado" ThisKey="IdGanado" OtherKey="IdGanado" Type="Ganado" IsForeignKey="true" />
-      <Association Name="Remesas_DetalleRemesa" Member="Remesas" ThisKey="IdRemesa" OtherKey="IdRemesa" Type="Remesas" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Remesas" Member="Remesas">
     <Type Name="Remesas">
-      <Column Name="IdRemesa" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdRemesa" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="IdCamion" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="EstadoRemesa" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
@@ -34,62 +43,15 @@
       <Association Name="Camiones_Remesas" Member="Camiones" ThisKey="IdCamion" OtherKey="IdCamion" Type="Camiones" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Camiones" Member="Camiones">
-    <Type Name="Camiones">
-      <Column Name="IdCamion" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+  <Function Name="dbo.ListarTodosLosCamiones" Method="ListarTodosLosCamiones">
+    <ElementType Name="ListarTodosLosCamionesResult">
+      <Column Name="IdCamion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TamañoCarga" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
       <Column Name="Chofer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="EstadoCamion" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Association Name="Camiones_Remesas" Member="Remesas" ThisKey="IdCamion" OtherKey="IdCamion" Type="Remesas" />
-    </Type>
-  </Table>
-  <Function Name="dbo.AgregarGanado" Method="AgregarGanado">
-    <Parameter Name="IdGanado" Parameter="idGanado" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(255)" />
-    <Parameter Name="Raza" Parameter="raza" Type="System.String" DbType="VarChar(255)" />
-    <Parameter Name="Tipo" Parameter="tipo" Type="System.String" DbType="VarChar(20)" />
-    <Parameter Name="Peso" Parameter="peso" Type="System.Decimal" DbType="Decimal(10,2)" />
-    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="Costo" Parameter="costo" Type="System.Decimal" DbType="Decimal(10,2)" />
-    <Parameter Name="ProduccionLecheDiaria" Parameter="produccionLecheDiaria" Type="System.Decimal" DbType="Decimal(10,2)" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.sp_ListarGanadoDisponible" Method="sp_ListarGanadoDisponible">
-    <ElementType Name="sp_ListarGanadoDisponibleResult">
-      <Column Name="IdGanado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Raza" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Tipo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Peso" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Costo" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="ProduccionLecheDiaria" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="EstadoGanado" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.CrearRemesa" Method="CrearRemesa">
-    <Parameter Name="IdRemesa" Parameter="idRemesa" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Fecha" Parameter="fecha" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="IdCamion" Parameter="idCamion" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.AgregarGanadoARemesa" Method="AgregarGanadoARemesa">
-    <Parameter Name="IdDetalleRemesa" Parameter="idDetalleRemesa" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdRemesa" Parameter="idRemesa" Type="System.Int32" DbType="Int" />
-    <Parameter Name="IdGanado" Parameter="idGanado" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.LiberarRemesa" Method="LiberarRemesa">
-    <Parameter Name="IdRemesa" Parameter="idRemesa" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.sp_ActualizarEstadoGanado" Method="sp_ActualizarEstadoGanado">
-    <Parameter Name="IdGanado" Parameter="idGanado" Type="System.Int32" DbType="Int" />
-    <Parameter Name="NuevoEstado" Parameter="nuevoEstado" Type="System.String" DbType="VarChar(20)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.AgregarCamion" Method="AgregarCamion">
-    <Parameter Name="IdCamion" Parameter="idCamion" Type="System.Int32" DbType="Int" />
     <Parameter Name="TamañoCarga" Parameter="tamañoCarga" Type="System.Decimal" DbType="Decimal(10,2)" />
     <Parameter Name="Chofer" Parameter="chofer" Type="System.String" DbType="VarChar(255)" />
     <Parameter Name="EstadoCamion" Parameter="estadoCamion" Type="System.String" DbType="VarChar(20)" />
@@ -100,14 +62,6 @@
       <Column Name="IdCamion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TamañoCarga" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
       <Column Name="Chofer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.ListarTodosLosCamiones" Method="ListarTodosLosCamiones">
-    <ElementType Name="ListarTodosLosCamionesResult">
-      <Column Name="IdCamion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TamañoCarga" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="Chofer" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="EstadoCamion" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

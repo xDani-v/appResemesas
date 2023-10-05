@@ -30,18 +30,18 @@ namespace datos
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
-    partial void InsertGanado(Ganado instance);
-    partial void UpdateGanado(Ganado instance);
-    partial void DeleteGanado(Ganado instance);
-    partial void InsertDetalleRemesa(DetalleRemesa instance);
-    partial void UpdateDetalleRemesa(DetalleRemesa instance);
-    partial void DeleteDetalleRemesa(DetalleRemesa instance);
-    partial void InsertRemesas(Remesas instance);
-    partial void UpdateRemesas(Remesas instance);
-    partial void DeleteRemesas(Remesas instance);
     partial void InsertCamiones(Camiones instance);
     partial void UpdateCamiones(Camiones instance);
     partial void DeleteCamiones(Camiones instance);
+    partial void InsertDetalleRemesa(DetalleRemesa instance);
+    partial void UpdateDetalleRemesa(DetalleRemesa instance);
+    partial void DeleteDetalleRemesa(DetalleRemesa instance);
+    partial void InsertGanado(Ganado instance);
+    partial void UpdateGanado(Ganado instance);
+    partial void DeleteGanado(Ganado instance);
+    partial void InsertRemesas(Remesas instance);
+    partial void UpdateRemesas(Remesas instance);
+    partial void DeleteRemesas(Remesas instance);
     #endregion
 		
 		public DataRemesaDataContext() : 
@@ -74,11 +74,11 @@ namespace datos
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Ganado> Ganado
+		public System.Data.Linq.Table<Camiones> Camiones
 		{
 			get
 			{
-				return this.GetTable<Ganado>();
+				return this.GetTable<Camiones>();
 			}
 		}
 		
@@ -90,6 +90,14 @@ namespace datos
 			}
 		}
 		
+		public System.Data.Linq.Table<Ganado> Ganado
+		{
+			get
+			{
+				return this.GetTable<Ganado>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Remesas> Remesas
 		{
 			get
@@ -98,60 +106,17 @@ namespace datos
 			}
 		}
 		
-		public System.Data.Linq.Table<Camiones> Camiones
-		{
-			get
-			{
-				return this.GetTable<Camiones>();
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarGanado")]
-		public int AgregarGanado([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdGanado", DbType="Int")] System.Nullable<int> idGanado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(255)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Raza", DbType="VarChar(255)")] string raza, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tipo", DbType="VarChar(20)")] string tipo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Peso", DbType="Decimal(10,2)")] System.Nullable<decimal> peso, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(MAX)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Costo", DbType="Decimal(10,2)")] System.Nullable<decimal> costo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProduccionLecheDiaria", DbType="Decimal(10,2)")] System.Nullable<decimal> produccionLecheDiaria)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idGanado, nombre, raza, tipo, peso, descripcion, costo, produccionLecheDiaria);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ListarGanadoDisponible")]
-		public ISingleResult<sp_ListarGanadoDisponibleResult> sp_ListarGanadoDisponible()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarTodosLosCamiones")]
+		public ISingleResult<ListarTodosLosCamionesResult> ListarTodosLosCamiones()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<sp_ListarGanadoDisponibleResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CrearRemesa")]
-		public int CrearRemesa([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRemesa", DbType="Int")] System.Nullable<int> idRemesa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha", DbType="DateTime")] System.Nullable<System.DateTime> fecha, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamion", DbType="Int")] System.Nullable<int> idCamion)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRemesa, fecha, idCamion);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarGanadoARemesa")]
-		public int AgregarGanadoARemesa([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdDetalleRemesa", DbType="Int")] System.Nullable<int> idDetalleRemesa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRemesa", DbType="Int")] System.Nullable<int> idRemesa, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdGanado", DbType="Int")] System.Nullable<int> idGanado)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idDetalleRemesa, idRemesa, idGanado);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LiberarRemesa")]
-		public int LiberarRemesa([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdRemesa", DbType="Int")] System.Nullable<int> idRemesa)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idRemesa);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ActualizarEstadoGanado")]
-		public int sp_ActualizarEstadoGanado([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdGanado", DbType="Int")] System.Nullable<int> idGanado, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NuevoEstado", DbType="VarChar(20)")] string nuevoEstado)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idGanado, nuevoEstado);
-			return ((int)(result.ReturnValue));
+			return ((ISingleResult<ListarTodosLosCamionesResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AgregarCamion")]
-		public int AgregarCamion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdCamion", DbType="Int")] System.Nullable<int> idCamion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TamañoCarga", DbType="Decimal(10,2)")] System.Nullable<decimal> tamañoCarga, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Chofer", DbType="VarChar(255)")] string chofer, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EstadoCamion", DbType="VarChar(20)")] string estadoCamion)
+		public int AgregarCamion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TamañoCarga", DbType="Decimal(10,2)")] System.Nullable<decimal> tamañoCarga, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Chofer", DbType="VarChar(255)")] string chofer, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="EstadoCamion", DbType="VarChar(20)")] string estadoCamion)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idCamion, tamañoCarga, chofer, estadoCamion);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tamañoCarga, chofer, estadoCamion);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -161,12 +126,359 @@ namespace datos
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<ListarCamionesDisponiblesResult>)(result.ReturnValue));
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Camiones")]
+	public partial class Camiones : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ListarTodosLosCamiones")]
-		public ISingleResult<ListarTodosLosCamionesResult> ListarTodosLosCamiones()
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IdCamion;
+		
+		private System.Nullable<decimal> _TamañoCarga;
+		
+		private string _Chofer;
+		
+		private string _EstadoCamion;
+		
+		private EntitySet<Remesas> _Remesas;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdCamionChanging(int value);
+    partial void OnIdCamionChanged();
+    partial void OnTamañoCargaChanging(System.Nullable<decimal> value);
+    partial void OnTamañoCargaChanged();
+    partial void OnChoferChanging(string value);
+    partial void OnChoferChanged();
+    partial void OnEstadoCamionChanging(string value);
+    partial void OnEstadoCamionChanged();
+    #endregion
+		
+		public Camiones()
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<ListarTodosLosCamionesResult>)(result.ReturnValue));
+			this._Remesas = new EntitySet<Remesas>(new Action<Remesas>(this.attach_Remesas), new Action<Remesas>(this.detach_Remesas));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCamion", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IdCamion
+		{
+			get
+			{
+				return this._IdCamion;
+			}
+			set
+			{
+				if ((this._IdCamion != value))
+				{
+					this.OnIdCamionChanging(value);
+					this.SendPropertyChanging();
+					this._IdCamion = value;
+					this.SendPropertyChanged("IdCamion");
+					this.OnIdCamionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TamañoCarga", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> TamañoCarga
+		{
+			get
+			{
+				return this._TamañoCarga;
+			}
+			set
+			{
+				if ((this._TamañoCarga != value))
+				{
+					this.OnTamañoCargaChanging(value);
+					this.SendPropertyChanging();
+					this._TamañoCarga = value;
+					this.SendPropertyChanged("TamañoCarga");
+					this.OnTamañoCargaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Chofer", DbType="VarChar(255)")]
+		public string Chofer
+		{
+			get
+			{
+				return this._Chofer;
+			}
+			set
+			{
+				if ((this._Chofer != value))
+				{
+					this.OnChoferChanging(value);
+					this.SendPropertyChanging();
+					this._Chofer = value;
+					this.SendPropertyChanged("Chofer");
+					this.OnChoferChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstadoCamion", DbType="VarChar(20)")]
+		public string EstadoCamion
+		{
+			get
+			{
+				return this._EstadoCamion;
+			}
+			set
+			{
+				if ((this._EstadoCamion != value))
+				{
+					this.OnEstadoCamionChanging(value);
+					this.SendPropertyChanging();
+					this._EstadoCamion = value;
+					this.SendPropertyChanged("EstadoCamion");
+					this.OnEstadoCamionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Camiones_Remesas", Storage="_Remesas", ThisKey="IdCamion", OtherKey="IdCamion")]
+		public EntitySet<Remesas> Remesas
+		{
+			get
+			{
+				return this._Remesas;
+			}
+			set
+			{
+				this._Remesas.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Remesas(Remesas entity)
+		{
+			this.SendPropertyChanging();
+			entity.Camiones = this;
+		}
+		
+		private void detach_Remesas(Remesas entity)
+		{
+			this.SendPropertyChanging();
+			entity.Camiones = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DetalleRemesa")]
+	public partial class DetalleRemesa : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IdDetalleRemesa;
+		
+		private System.Nullable<int> _IdRemesa;
+		
+		private System.Nullable<int> _IdGanado;
+		
+		private EntityRef<Ganado> _Ganado;
+		
+		private EntityRef<Remesas> _Remesas;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdDetalleRemesaChanging(int value);
+    partial void OnIdDetalleRemesaChanged();
+    partial void OnIdRemesaChanging(System.Nullable<int> value);
+    partial void OnIdRemesaChanged();
+    partial void OnIdGanadoChanging(System.Nullable<int> value);
+    partial void OnIdGanadoChanged();
+    #endregion
+		
+		public DetalleRemesa()
+		{
+			this._Ganado = default(EntityRef<Ganado>);
+			this._Remesas = default(EntityRef<Remesas>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDetalleRemesa", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IdDetalleRemesa
+		{
+			get
+			{
+				return this._IdDetalleRemesa;
+			}
+			set
+			{
+				if ((this._IdDetalleRemesa != value))
+				{
+					this.OnIdDetalleRemesaChanging(value);
+					this.SendPropertyChanging();
+					this._IdDetalleRemesa = value;
+					this.SendPropertyChanged("IdDetalleRemesa");
+					this.OnIdDetalleRemesaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRemesa", DbType="Int")]
+		public System.Nullable<int> IdRemesa
+		{
+			get
+			{
+				return this._IdRemesa;
+			}
+			set
+			{
+				if ((this._IdRemesa != value))
+				{
+					if (this._Remesas.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdRemesaChanging(value);
+					this.SendPropertyChanging();
+					this._IdRemesa = value;
+					this.SendPropertyChanged("IdRemesa");
+					this.OnIdRemesaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGanado", DbType="Int")]
+		public System.Nullable<int> IdGanado
+		{
+			get
+			{
+				return this._IdGanado;
+			}
+			set
+			{
+				if ((this._IdGanado != value))
+				{
+					if (this._Ganado.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdGanadoChanging(value);
+					this.SendPropertyChanging();
+					this._IdGanado = value;
+					this.SendPropertyChanged("IdGanado");
+					this.OnIdGanadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ganado_DetalleRemesa", Storage="_Ganado", ThisKey="IdGanado", OtherKey="IdGanado", IsForeignKey=true)]
+		public Ganado Ganado
+		{
+			get
+			{
+				return this._Ganado.Entity;
+			}
+			set
+			{
+				Ganado previousValue = this._Ganado.Entity;
+				if (((previousValue != value) 
+							|| (this._Ganado.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ganado.Entity = null;
+						previousValue.DetalleRemesa.Remove(this);
+					}
+					this._Ganado.Entity = value;
+					if ((value != null))
+					{
+						value.DetalleRemesa.Add(this);
+						this._IdGanado = value.IdGanado;
+					}
+					else
+					{
+						this._IdGanado = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Ganado");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Remesas_DetalleRemesa", Storage="_Remesas", ThisKey="IdRemesa", OtherKey="IdRemesa", IsForeignKey=true)]
+		public Remesas Remesas
+		{
+			get
+			{
+				return this._Remesas.Entity;
+			}
+			set
+			{
+				Remesas previousValue = this._Remesas.Entity;
+				if (((previousValue != value) 
+							|| (this._Remesas.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Remesas.Entity = null;
+						previousValue.DetalleRemesa.Remove(this);
+					}
+					this._Remesas.Entity = value;
+					if ((value != null))
+					{
+						value.DetalleRemesa.Add(this);
+						this._IdRemesa = value.IdRemesa;
+					}
+					else
+					{
+						this._IdRemesa = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Remesas");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -226,7 +538,7 @@ namespace datos
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGanado", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGanado", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int IdGanado
 		{
 			get
@@ -452,198 +764,6 @@ namespace datos
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DetalleRemesa")]
-	public partial class DetalleRemesa : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IdDetalleRemesa;
-		
-		private System.Nullable<int> _IdRemesa;
-		
-		private System.Nullable<int> _IdGanado;
-		
-		private EntityRef<Ganado> _Ganado;
-		
-		private EntityRef<Remesas> _Remesas;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdDetalleRemesaChanging(int value);
-    partial void OnIdDetalleRemesaChanged();
-    partial void OnIdRemesaChanging(System.Nullable<int> value);
-    partial void OnIdRemesaChanged();
-    partial void OnIdGanadoChanging(System.Nullable<int> value);
-    partial void OnIdGanadoChanged();
-    #endregion
-		
-		public DetalleRemesa()
-		{
-			this._Ganado = default(EntityRef<Ganado>);
-			this._Remesas = default(EntityRef<Remesas>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdDetalleRemesa", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int IdDetalleRemesa
-		{
-			get
-			{
-				return this._IdDetalleRemesa;
-			}
-			set
-			{
-				if ((this._IdDetalleRemesa != value))
-				{
-					this.OnIdDetalleRemesaChanging(value);
-					this.SendPropertyChanging();
-					this._IdDetalleRemesa = value;
-					this.SendPropertyChanged("IdDetalleRemesa");
-					this.OnIdDetalleRemesaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRemesa", DbType="Int")]
-		public System.Nullable<int> IdRemesa
-		{
-			get
-			{
-				return this._IdRemesa;
-			}
-			set
-			{
-				if ((this._IdRemesa != value))
-				{
-					if (this._Remesas.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdRemesaChanging(value);
-					this.SendPropertyChanging();
-					this._IdRemesa = value;
-					this.SendPropertyChanged("IdRemesa");
-					this.OnIdRemesaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGanado", DbType="Int")]
-		public System.Nullable<int> IdGanado
-		{
-			get
-			{
-				return this._IdGanado;
-			}
-			set
-			{
-				if ((this._IdGanado != value))
-				{
-					if (this._Ganado.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdGanadoChanging(value);
-					this.SendPropertyChanging();
-					this._IdGanado = value;
-					this.SendPropertyChanged("IdGanado");
-					this.OnIdGanadoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ganado_DetalleRemesa", Storage="_Ganado", ThisKey="IdGanado", OtherKey="IdGanado", IsForeignKey=true)]
-		public Ganado Ganado
-		{
-			get
-			{
-				return this._Ganado.Entity;
-			}
-			set
-			{
-				Ganado previousValue = this._Ganado.Entity;
-				if (((previousValue != value) 
-							|| (this._Ganado.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ganado.Entity = null;
-						previousValue.DetalleRemesa.Remove(this);
-					}
-					this._Ganado.Entity = value;
-					if ((value != null))
-					{
-						value.DetalleRemesa.Add(this);
-						this._IdGanado = value.IdGanado;
-					}
-					else
-					{
-						this._IdGanado = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Ganado");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Remesas_DetalleRemesa", Storage="_Remesas", ThisKey="IdRemesa", OtherKey="IdRemesa", IsForeignKey=true)]
-		public Remesas Remesas
-		{
-			get
-			{
-				return this._Remesas.Entity;
-			}
-			set
-			{
-				Remesas previousValue = this._Remesas.Entity;
-				if (((previousValue != value) 
-							|| (this._Remesas.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Remesas.Entity = null;
-						previousValue.DetalleRemesa.Remove(this);
-					}
-					this._Remesas.Entity = value;
-					if ((value != null))
-					{
-						value.DetalleRemesa.Add(this);
-						this._IdRemesa = value.IdRemesa;
-					}
-					else
-					{
-						this._IdRemesa = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Remesas");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Remesas")]
 	public partial class Remesas : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -687,7 +807,7 @@ namespace datos
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRemesa", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdRemesa", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int IdRemesa
 		{
 			get
@@ -871,400 +991,6 @@ namespace datos
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Camiones")]
-	public partial class Camiones : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IdCamion;
-		
-		private System.Nullable<decimal> _TamañoCarga;
-		
-		private string _Chofer;
-		
-		private string _EstadoCamion;
-		
-		private EntitySet<Remesas> _Remesas;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdCamionChanging(int value);
-    partial void OnIdCamionChanged();
-    partial void OnTamañoCargaChanging(System.Nullable<decimal> value);
-    partial void OnTamañoCargaChanged();
-    partial void OnChoferChanging(string value);
-    partial void OnChoferChanged();
-    partial void OnEstadoCamionChanging(string value);
-    partial void OnEstadoCamionChanged();
-    #endregion
-		
-		public Camiones()
-		{
-			this._Remesas = new EntitySet<Remesas>(new Action<Remesas>(this.attach_Remesas), new Action<Remesas>(this.detach_Remesas));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCamion", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int IdCamion
-		{
-			get
-			{
-				return this._IdCamion;
-			}
-			set
-			{
-				if ((this._IdCamion != value))
-				{
-					this.OnIdCamionChanging(value);
-					this.SendPropertyChanging();
-					this._IdCamion = value;
-					this.SendPropertyChanged("IdCamion");
-					this.OnIdCamionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TamañoCarga", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> TamañoCarga
-		{
-			get
-			{
-				return this._TamañoCarga;
-			}
-			set
-			{
-				if ((this._TamañoCarga != value))
-				{
-					this.OnTamañoCargaChanging(value);
-					this.SendPropertyChanging();
-					this._TamañoCarga = value;
-					this.SendPropertyChanged("TamañoCarga");
-					this.OnTamañoCargaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Chofer", DbType="VarChar(255)")]
-		public string Chofer
-		{
-			get
-			{
-				return this._Chofer;
-			}
-			set
-			{
-				if ((this._Chofer != value))
-				{
-					this.OnChoferChanging(value);
-					this.SendPropertyChanging();
-					this._Chofer = value;
-					this.SendPropertyChanged("Chofer");
-					this.OnChoferChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstadoCamion", DbType="VarChar(20)")]
-		public string EstadoCamion
-		{
-			get
-			{
-				return this._EstadoCamion;
-			}
-			set
-			{
-				if ((this._EstadoCamion != value))
-				{
-					this.OnEstadoCamionChanging(value);
-					this.SendPropertyChanging();
-					this._EstadoCamion = value;
-					this.SendPropertyChanged("EstadoCamion");
-					this.OnEstadoCamionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Camiones_Remesas", Storage="_Remesas", ThisKey="IdCamion", OtherKey="IdCamion")]
-		public EntitySet<Remesas> Remesas
-		{
-			get
-			{
-				return this._Remesas;
-			}
-			set
-			{
-				this._Remesas.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Remesas(Remesas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Camiones = this;
-		}
-		
-		private void detach_Remesas(Remesas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Camiones = null;
-		}
-	}
-	
-	public partial class sp_ListarGanadoDisponibleResult
-	{
-		
-		private int _IdGanado;
-		
-		private string _Nombre;
-		
-		private string _Raza;
-		
-		private string _Tipo;
-		
-		private System.Nullable<decimal> _Peso;
-		
-		private string _Descripcion;
-		
-		private System.Nullable<decimal> _Costo;
-		
-		private System.Nullable<decimal> _ProduccionLecheDiaria;
-		
-		private string _EstadoGanado;
-		
-		public sp_ListarGanadoDisponibleResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGanado", DbType="Int NOT NULL")]
-		public int IdGanado
-		{
-			get
-			{
-				return this._IdGanado;
-			}
-			set
-			{
-				if ((this._IdGanado != value))
-				{
-					this._IdGanado = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(255)")]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this._Nombre = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Raza", DbType="VarChar(255)")]
-		public string Raza
-		{
-			get
-			{
-				return this._Raza;
-			}
-			set
-			{
-				if ((this._Raza != value))
-				{
-					this._Raza = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(20)")]
-		public string Tipo
-		{
-			get
-			{
-				return this._Tipo;
-			}
-			set
-			{
-				if ((this._Tipo != value))
-				{
-					this._Tipo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Peso", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> Peso
-		{
-			get
-			{
-				return this._Peso;
-			}
-			set
-			{
-				if ((this._Peso != value))
-				{
-					this._Peso = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(MAX)")]
-		public string Descripcion
-		{
-			get
-			{
-				return this._Descripcion;
-			}
-			set
-			{
-				if ((this._Descripcion != value))
-				{
-					this._Descripcion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Costo", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> Costo
-		{
-			get
-			{
-				return this._Costo;
-			}
-			set
-			{
-				if ((this._Costo != value))
-				{
-					this._Costo = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProduccionLecheDiaria", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> ProduccionLecheDiaria
-		{
-			get
-			{
-				return this._ProduccionLecheDiaria;
-			}
-			set
-			{
-				if ((this._ProduccionLecheDiaria != value))
-				{
-					this._ProduccionLecheDiaria = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstadoGanado", DbType="VarChar(20)")]
-		public string EstadoGanado
-		{
-			get
-			{
-				return this._EstadoGanado;
-			}
-			set
-			{
-				if ((this._EstadoGanado != value))
-				{
-					this._EstadoGanado = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ListarCamionesDisponiblesResult
-	{
-		
-		private int _IdCamion;
-		
-		private System.Nullable<decimal> _TamañoCarga;
-		
-		private string _Chofer;
-		
-		public ListarCamionesDisponiblesResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCamion", DbType="Int NOT NULL")]
-		public int IdCamion
-		{
-			get
-			{
-				return this._IdCamion;
-			}
-			set
-			{
-				if ((this._IdCamion != value))
-				{
-					this._IdCamion = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TamañoCarga", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> TamañoCarga
-		{
-			get
-			{
-				return this._TamañoCarga;
-			}
-			set
-			{
-				if ((this._TamañoCarga != value))
-				{
-					this._TamañoCarga = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Chofer", DbType="VarChar(255)")]
-		public string Chofer
-		{
-			get
-			{
-				return this._Chofer;
-			}
-			set
-			{
-				if ((this._Chofer != value))
-				{
-					this._Chofer = value;
-				}
-			}
-		}
-	}
-	
 	public partial class ListarTodosLosCamionesResult
 	{
 		
@@ -1340,6 +1066,68 @@ namespace datos
 				if ((this._EstadoCamion != value))
 				{
 					this._EstadoCamion = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ListarCamionesDisponiblesResult
+	{
+		
+		private int _IdCamion;
+		
+		private System.Nullable<decimal> _TamañoCarga;
+		
+		private string _Chofer;
+		
+		public ListarCamionesDisponiblesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCamion", DbType="Int NOT NULL")]
+		public int IdCamion
+		{
+			get
+			{
+				return this._IdCamion;
+			}
+			set
+			{
+				if ((this._IdCamion != value))
+				{
+					this._IdCamion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TamañoCarga", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> TamañoCarga
+		{
+			get
+			{
+				return this._TamañoCarga;
+			}
+			set
+			{
+				if ((this._TamañoCarga != value))
+				{
+					this._TamañoCarga = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Chofer", DbType="VarChar(255)")]
+		public string Chofer
+		{
+			get
+			{
+				return this._Chofer;
+			}
+			set
+			{
+				if ((this._Chofer != value))
+				{
+					this._Chofer = value;
 				}
 			}
 		}

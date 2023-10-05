@@ -1,0 +1,12 @@
+C:\Users\NITRO\source\repos\appResemesas\logica\bin\Debug\logica.dll
+C:\Users\NITRO\source\repos\appResemesas\logica\bin\Debug\logica.pdb
+C:\Users\NITRO\source\repos\appResemesas\logica\bin\Debug\datos.dll
+C:\Users\NITRO\source\repos\appResemesas\logica\bin\Debug\entidades.dll
+C:\Users\NITRO\source\repos\appResemesas\logica\bin\Debug\datos.pdb
+C:\Users\NITRO\source\repos\appResemesas\logica\bin\Debug\datos.dll.config
+C:\Users\NITRO\source\repos\appResemesas\logica\bin\Debug\entidades.pdb
+C:\Users\NITRO\source\repos\appResemesas\logica\obj\Debug\logica.csproj.AssemblyReference.cache
+C:\Users\NITRO\source\repos\appResemesas\logica\obj\Debug\logica.csproj.CoreCompileInputs.cache
+C:\Users\NITRO\source\repos\appResemesas\logica\obj\Debug\logica.csproj.CopyComplete
+C:\Users\NITRO\source\repos\appResemesas\logica\obj\Debug\logica.dll
+C:\Users\NITRO\source\repos\appResemesas\logica\obj\Debug\logica.pdb

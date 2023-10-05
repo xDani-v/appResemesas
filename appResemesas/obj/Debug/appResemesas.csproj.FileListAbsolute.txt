@@ -9,3 +9,12 @@ C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.csp
 C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.csproj.CoreCompileInputs.cache
 C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.exe
 C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.pdb
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\entidades.dll
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\logica.dll
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\datos.dll
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\entidades.pdb
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\logica.pdb
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\datos.pdb
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\datos.dll.config
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.formulario.fCamion.resources
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.csproj.CopyComplete
