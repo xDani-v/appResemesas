@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataRemesa">
+  <DataContextMoniker Name="/DataRemesaDataContext" />
+  <nestedChildShapes>
+    <classShape Id="758c5279-ff59-4c18-a340-b02de0f9a9fa" absoluteBounds="3.5, 5.125, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/DataRemesaDataContext/Ganado" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a960e4f8-40fc-4534-ae82-ef7ad82ecc5e" absoluteBounds="3.515, 5.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="559bda98-e90f-4563-9bad-e9170ecd156d" absoluteBounds="6.25, 1.125, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DataRemesaDataContext/DetalleRemesa" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cf9a5cbe-010c-49cf-bfb3-ed9799194ec4" absoluteBounds="6.265, 1.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="da3b8ceb-a04d-4957-b57d-58ffe5e5e87d" absoluteBounds="3.5, 0.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DataRemesaDataContext/Remesas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f420e9b4-e5e5-4c6a-89a1-fb8dcff518ef" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 6.39505126953125); (7.25 : 6.39505126953125); (7.25 : 2.5112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataRemesaDataContext/Ganado/Ganado_DetalleRemesa" />
+      <nodes>
+        <classShapeMoniker Id="758c5279-ff59-4c18-a340-b02de0f9a9fa" />
+        <classShapeMoniker Id="559bda98-e90f-4563-9bad-e9170ecd156d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.81814697265625); (6.25 : 1.81814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataRemesaDataContext/Remesas/Remesas_DetalleRemesa" />
+      <nodes>
+        <classShapeMoniker Id="da3b8ceb-a04d-4957-b57d-58ffe5e5e87d" />
+        <classShapeMoniker Id="559bda98-e90f-4563-9bad-e9170ecd156d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="7c5f04d9-b594-4397-aecc-7a0f3dda4730" absoluteBounds="0.5, 2.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataRemesaDataContext/Camiones" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c00d63c1-5532-403d-9cc2-94ff09950a12" absoluteBounds="0.51499999999999968, 2.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 3.29974659375); (4.5 : 3.29974659375); (4.5 : 2.64589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataRemesaDataContext/Camiones/Camiones_Remesas" />
+      <nodes>
+        <classShapeMoniker Id="7c5f04d9-b594-4397-aecc-7a0f3dda4730" />
+        <classShapeMoniker Id="da3b8ceb-a04d-4957-b57d-58ffe5e5e87d" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

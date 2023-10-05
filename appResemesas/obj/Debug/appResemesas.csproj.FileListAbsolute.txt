@@ -1,0 +1,11 @@
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\appResemesas.exe.config
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\appResemesas.exe
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\bin\Debug\appResemesas.pdb
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.csproj.AssemblyReference.cache
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.Form1.resources
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.Properties.Resources.resources
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.vistas.vCamiones.resources
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.csproj.GenerateResource.cache
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.csproj.CoreCompileInputs.cache
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.exe
+C:\Users\NITRO\source\repos\appResemesas\appResemesas\obj\Debug\appResemesas.pdb
